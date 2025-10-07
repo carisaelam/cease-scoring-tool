@@ -1,11 +1,17 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
-</template>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Scoring Tool</a>
+      <div class="navbar-nav">
+        <RouterLink class="nav-link" to="/">Form</RouterLink>
+        <RouterLink class="nav-link" to="/review">Review</RouterLink>
+      </div>
+    </div>
+  </nav>
 
-<style scoped></style>
+  <main class="container py-4">
+    <RouterView />
+  </main>
+</template>
