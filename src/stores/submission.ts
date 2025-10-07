@@ -1,16 +1,21 @@
 import { defineStore } from 'pinia'
+import { QUESTIONS } from '@/lib/questions' // 👈 add
 
 export type Demographics = {
   firstName: string
   lastName: string
-  dob: string // we'll store as YYYY-MM-DD
+  dob: string
   gdcNumber: string
 }
 
-export type Answers = Record<string, boolean | null> // q1..q10 keys
+// derive the keys from QUESTIONS so q1..q10 stay in sync with your loop
+type AnswerId = (typeof QUESTIONS)[number]['id']
+export type Answers = Record<AnswerId, boolean | null>
+
+// small helper to build an answers object like { q1:null, ... }
+const initAnswers = (): Answers => Object.fromEntries(QUESTIONS.map((q) => [q.id, null])) as Answers
 
 function basicScreeningRule(answers: Answers): boolean {
-  // TEMP RULE: screen in if 7 or more YES answers
   const yesCount = Object.values(answers).filter((v) => v === true).length
   return yesCount >= 7
 }
@@ -23,18 +28,7 @@ export const useSubmissionStore = defineStore('submission', {
       dob: '',
       gdcNumber: '',
     } as Demographics,
-    answers: {
-      q1: null,
-      q2: null,
-      q3: null,
-      q4: null,
-      q5: null,
-      q6: null,
-      q7: null,
-      q8: null,
-      q9: null,
-      q10: null,
-    } as Answers,
+    answers: initAnswers(), // 👈 use helper
     screenedIn: false,
   }),
   actions: {
@@ -43,18 +37,7 @@ export const useSubmissionStore = defineStore('submission', {
     },
     reset() {
       this.demographics = { firstName: '', lastName: '', dob: '', gdcNumber: '' }
-      this.answers = {
-        q1: null,
-        q2: null,
-        q3: null,
-        q4: null,
-        q5: null,
-        q6: null,
-        q7: null,
-        q8: null,
-        q9: null,
-        q10: null,
-      }
+      this.answers = initAnswers() // 👈 keep in sync with QUESTIONS
       this.screenedIn = false
     },
   },
