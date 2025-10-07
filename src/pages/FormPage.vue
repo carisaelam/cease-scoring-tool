@@ -103,7 +103,7 @@
 <script setup lang="ts">
 import { useSubmissionStore } from '@/stores/submission'
 import { useRouter } from 'vue-router'
-import { QUESTIONS } from '../lib/questions.ts'
+import { QUESTIONS } from '@/lib/questions.ts'
 
 import { ref } from 'vue'
 const router = useRouter()
