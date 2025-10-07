@@ -61,28 +61,26 @@
                 {{ question.id }}: {{ question.text }}
               </legend>
 
-              <div class="form-check form-check-inline">
+              <div class="btn-group" :aria-label="question.text">
                 <input
-                  class="form-check-input"
                   type="radio"
+                  class="btn-check"
                   :name="question.id"
                   :id="question.id + '-yes'"
                   :value="true"
                   v-model="store.answers[question.id]"
                 />
-                <label class="form-check-label" :for="question.id + '-yes'">Yes</label>
-              </div>
+                <label class="btn btn-outline-success" :for="question.id + '-yes'">Yes</label>
 
-              <div class="form-check form-check-inline">
                 <input
-                  class="form-check-input"
                   type="radio"
+                  class="btn-check"
                   :name="question.id"
                   :id="question.id + '-no'"
                   :value="false"
                   v-model="store.answers[question.id]"
                 />
-                <label class="form-check-label" :for="question.id + '-no'">No</label>
+                <label class="btn btn-outline-danger" :for="question.id + '-no'">No</label>
               </div>
             </fieldset>
           </div>
