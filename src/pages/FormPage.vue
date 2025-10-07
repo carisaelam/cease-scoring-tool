@@ -3,6 +3,12 @@
     <div class="card-body">
       <h1 class="h4 mb-3">Scoring Form</h1>
 
+      <!-- Alert block -->
+      <div v-if="errorMsg" class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+        <i class="bi bi-exclamation-triangle"></i>
+        {{ errorMsg }}
+      </div>
+
       <form>
         <!-- First Name -->
         <div class="mb-3">
@@ -305,9 +311,24 @@
 import { useSubmissionStore } from '@/stores/submission'
 import { useRouter } from 'vue-router'
 
+import { ref } from 'vue'
 const router = useRouter()
 
+const errorMsg = ref<string | null>(null)
+
+function isComplete() {
+  const d = store.demographics
+  const allDemoFilled = d.firstName && d.lastName && d.dob && d.gdcNumber
+  const allQsAnswered = Object.values(store.answers).every((v) => v === true || v === false)
+  return allDemoFilled && allQsAnswered
+}
+
 function handleSubmit() {
+  if (!isComplete()) {
+    errorMsg.value = 'Please complete all demographics fields and answer all 10 questions.'
+    return
+  }
+  errorMsg.value = null
   store.computeScreening()
   router.push('/review')
 }
