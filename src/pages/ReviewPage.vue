@@ -19,11 +19,20 @@
 
       <h2 class="h5">Answers</h2>
       <div class="row row-cols-1 row-cols-md-2 g-2">
-        <div class="col" v-for="n in 10" :key="n">
-          <div class="d-flex justify-content-between border rounded p-2">
-            <span>Question {{ n }}</span>
-            <span class="fw-semibold">
-              {{ answers['q' + n] === true ? 'Yes' : answers['q' + n] === false ? 'No' : '—' }}
+        <div class="col" v-for="q in QUESTIONS" :key="q.id">
+          <div class="d-flex justify-content-between align-items-start border rounded p-2">
+            <span class="me-2">{{ q.text }}</span>
+            <span
+              class="badge"
+              :class="
+                answers[q.id] === true
+                  ? 'bg-success'
+                  : answers[q.id] === false
+                    ? 'bg-danger'
+                    : 'bg-secondary'
+              "
+            >
+              {{ answers[q.id] === true ? 'Yes' : answers[q.id] === false ? 'No' : '—' }}
             </span>
           </div>
         </div>
@@ -35,6 +44,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useSubmissionStore } from '@/stores/submission'
+import { QUESTIONS } from '@/lib/questions'
 
 const store = useSubmissionStore()
 const { demographics, answers, screenedIn } = storeToRefs(store)
