@@ -56,29 +56,35 @@
         <div class="questions__form__container">
           <!-- Question loop -->
           <div v-for="question in QUESTIONS" v-bind:key="question.id">
-            <div class="mb-3">
-              <label class="form-label d-block">{{ question.id }}: {{ question.text }}</label>
+            <fieldset class="mb-3">
+              <legend class="form-label d-block mb-2">
+                {{ question.id }}: {{ question.text }}
+              </legend>
+
               <div class="form-check form-check-inline">
                 <input
                   class="form-check-input"
                   type="radio"
+                  :name="question.id"
+                  :id="question.id + '-yes'"
                   :value="true"
                   v-model="store.answers[question.id]"
-                  :id="question.id + '-yes'"
                 />
                 <label class="form-check-label" :for="question.id + '-yes'">Yes</label>
               </div>
+
               <div class="form-check form-check-inline">
                 <input
                   class="form-check-input"
                   type="radio"
+                  :name="question.id"
                   :id="question.id + '-no'"
                   :value="false"
                   v-model="store.answers[question.id]"
                 />
                 <label class="form-check-label" :for="question.id + '-no'">No</label>
               </div>
-            </div>
+            </fieldset>
           </div>
         </div>
 
