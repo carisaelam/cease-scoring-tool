@@ -1,12 +1,7 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h1 class="h4 mb-3">Scoring Tool</h1>
-
-      <!-- CTA -->
-      <div class="mb-4">
-        <RouterLink to="/form" class="btn btn-primary"> Start Screening </RouterLink>
-      </div>
+      <h1 class="h4 mb-3">About the Scoring Tool</h1>
 
       <!-- Accordion -->
       <div class="accordion" id="aboutAccordion">
@@ -99,11 +94,15 @@
             </div>
           </div>
         </div>
+        <p class="small text-muted mt-4 mb-3">
+          This page is informational only and does not constitute legal advice.
+        </p>
       </div>
 
-      <p class="small text-muted mt-4 mb-0">
-        This page is informational only and does not constitute legal advice.
-      </p>
+      <!-- CTA -->
+      <div class="mb-4 text-center">
+        <RouterLink to="/form" class="btn btn-primary btn-lg"> Start Screening </RouterLink>
+      </div>
     </div>
   </div>
 </template>

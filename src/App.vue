@@ -3,11 +3,10 @@
 <template>
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">Scoring Tool</a>
+      <a class="navbar-brand" href="/">Scoring Tool</a>
       <div class="navbar-nav">
         <RouterLink class="nav-link" to="/">About</RouterLink>
         <RouterLink class="nav-link" to="/form">Form</RouterLink>
-        <RouterLink class="nav-link" to="/review">Review</RouterLink>
       </div>
     </div>
   </nav>
