@@ -9,6 +9,13 @@
         </span>
       </div>
 
+      <div v-if="matchedRules.length" class="mb-3">
+        <h2 class="h6 mb-2">Matched Rule(s)</h2>
+        <ul class="mb-0">
+          <li v-for="r in matchedRules" :key="r">{{ r }}</li>
+        </ul>
+      </div>
+
       <h2 class="h5">Demographics</h2>
       <ul class="list-unstyled mb-4">
         <li><strong>First:</strong> {{ demographics.firstName }}</li>
@@ -47,5 +54,5 @@ import { useSubmissionStore } from '@/stores/submission'
 import { QUESTIONS } from '@/lib/questions'
 
 const store = useSubmissionStore()
-const { demographics, answers, screenedIn } = storeToRefs(store)
+const { demographics, answers, screenedIn, matchedRules } = storeToRefs(store)
 </script>
