@@ -91,6 +91,11 @@
       </form>
 
       <pre class="mt-3 bg-light p-2">
+        Screened in: {{ evaluateScreening(store.answers).screenedIn }}
+        Reasons: {{ evaluateScreening(store.answers).reasons }}
+      </pre>
+
+      <pre class="mt-3 bg-light p-2">
         {{ store.demographics }}
         {{ store.answers }}
       </pre>
@@ -117,6 +122,7 @@ import { QUESTIONS } from '@/lib/questions.ts'
 import { Q } from '@/lib/questionMap'
 
 import { ref } from 'vue'
+import { evaluateScreening } from '@/lib/scoringRules'
 const router = useRouter()
 
 const errorMsg = ref<string | null>(null)
