@@ -9,10 +9,25 @@
         </span>
       </div>
 
-      <div v-if="matchedRules.length" class="mb-3">
-        <h2 class="h6 mb-2">Matched Rule(s)</h2>
-        <ul class="mb-0">
-          <li v-for="r in matchedRules" :key="r">{{ r }}</li>
+      <div v-if="matchedRules.length" class="mb-3 accordion" id="matchedRulesAccordion">
+        <h2 class="h6 mb-2 accordion-header">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            Matched Rule(s)
+          </button>
+        </h2>
+        <ul
+          class="mb-0 accordion-collapse collapse show"
+          id="collapseOne"
+          data-bs-parent="#matchedRulesAccordion"
+        >
+          <li v-for="r in matchedRules" :key="r" class="accordion-body">{{ r }}</li>
         </ul>
       </div>
 
