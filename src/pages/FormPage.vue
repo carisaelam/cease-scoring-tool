@@ -94,6 +94,18 @@
         {{ store.demographics }}
         {{ store.answers }}
       </pre>
+      <pre class="mt-2 bg-light p-2">
+        {{
+          {
+            one: store.answers[Q.ONE],
+            one_b: store.answers[Q.ONE_B],
+            eight: store.answers[Q.EIGHT],
+            nine: store.answers[Q.NINE],
+            ten: store.answers[Q.TEN],
+          }
+        }}
+</pre
+      >
     </div>
   </div>
 </template>
@@ -102,6 +114,7 @@
 import { useSubmissionStore } from '@/stores/submission'
 import { useRouter } from 'vue-router'
 import { QUESTIONS } from '@/lib/questions.ts'
+import { Q } from '@/lib/questionMap'
 
 import { ref } from 'vue'
 const router = useRouter()

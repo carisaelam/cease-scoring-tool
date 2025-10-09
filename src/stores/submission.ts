@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { QUESTIONS } from '@/lib/questions' // 👈 add
+import { QUESTIONS } from '@/lib/questions'
+import { evaluateScreening } from '@/lib/scoringRules'
 
 export type Demographics = {
   firstName: string
@@ -15,11 +16,6 @@ export type Answers = Record<AnswerId, boolean | null>
 // small helper to build an answers object like { q1:null, ... }
 const initAnswers = (): Answers => Object.fromEntries(QUESTIONS.map((q) => [q.id, null])) as Answers
 
-function basicScreeningRule(answers: Answers): boolean {
-  const yesCount = Object.values(answers).filter((v) => v === true).length
-  return yesCount >= 7
-}
-
 export const useSubmissionStore = defineStore('submission', {
   state: () => ({
     demographics: {
@@ -33,7 +29,7 @@ export const useSubmissionStore = defineStore('submission', {
   }),
   actions: {
     computeScreening() {
-      this.screenedIn = basicScreeningRule(this.answers)
+      this.screenedIn = evaluateScreening(this.answers)
     },
     reset() {
       this.demographics = { firstName: '', lastName: '', dob: '', gdcNumber: '' }
