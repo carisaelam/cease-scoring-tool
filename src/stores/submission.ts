@@ -29,7 +29,7 @@ export const useSubmissionStore = defineStore('submission', {
   }),
   actions: {
     computeScreening() {
-      this.screenedIn = evaluateScreening(this.answers)
+      this.screenedIn = evaluateScreening(this.answers).screenedIn
     },
     reset() {
       this.demographics = { firstName: '', lastName: '', dob: '', gdcNumber: '' }
