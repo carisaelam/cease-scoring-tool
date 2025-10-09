@@ -26,15 +26,19 @@ export const useSubmissionStore = defineStore('submission', {
     } as Demographics,
     answers: initAnswers(), // 👈 use helper
     screenedIn: false,
+    matchedRules: [] as string[],
   }),
   actions: {
     computeScreening() {
-      this.screenedIn = evaluateScreening(this.answers).screenedIn
+      const { screenedIn, reasons } = evaluateScreening(this.answers)
+      this.screenedIn = screenedIn
+      this.matchedRules = reasons
     },
     reset() {
       this.demographics = { firstName: '', lastName: '', dob: '', gdcNumber: '' }
       this.answers = initAnswers() // 👈 keep in sync with QUESTIONS
       this.screenedIn = false
+      this.matchedRules = []
     },
   },
 })
