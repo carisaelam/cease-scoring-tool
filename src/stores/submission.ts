@@ -24,7 +24,7 @@ export const useSubmissionStore = defineStore('submission', {
       dob: '',
       gdcNumber: '',
     } as Demographics,
-    answers: initAnswers(), // 👈 use helper
+    answers: initAnswers(),
     screenedIn: false,
     matchedRules: [] as string[],
   }),
