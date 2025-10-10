@@ -57,7 +57,7 @@
           <!-- Question loop -->
           <div v-for="question in QUESTIONS" v-bind:key="question.id">
             <fieldset class="mb-5">
-              <legend class="form-label d-block mb-2">
+              <legend class="form-label d-block mb-2 fs-5">
                 {{ question.id }}: {{ question.text }}
               </legend>
 
